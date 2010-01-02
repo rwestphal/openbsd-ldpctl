@@ -117,8 +117,8 @@ main(int argc, char *argv[])
 		imsg_compose(ibuf, IMSG_CTL_SHOW_NBR, 0, 0, -1, NULL, 0);
 		break;
 	case SHOW_LIB:
-		printf("%-20s %-17s %-17s %s\n", "Destination",
-		    "Nexthop", "Local Label", "Remote Label");
+		printf("%-20s %-17s %-14s %-14s %-10s\n", "Destination",
+		    "Nexthop", "Local Label", "Remote Label", "In Use");
 		imsg_compose(ibuf, IMSG_CTL_SHOW_LIB, 0, 0, -1, NULL, 0);
 		break;
 	case SHOW_LFIB:
@@ -328,7 +328,7 @@ show_lib_msg(struct imsg *imsg)
 		    rt->prefixlen) == -1)
 			err(1, NULL);
 
-		if (rt->connected) {
+		if (rt->connected || !rt->in_use) {
 			if (asprintf(&remote, "-") == -1)
 				err(1, NULL);
 		} else {
@@ -336,10 +336,10 @@ show_lib_msg(struct imsg *imsg)
 				err(1, NULL);
 		}
 
-		printf("%-20s %-17s %-17u %s\n", dstnet,
+		printf("%-20s %-17s %-14u %-14s %s\n", dstnet,
 		    inet_ntoa(rt->nexthop),
 		    (ntohl(rt->local_label) >> MPLS_LABEL_OFFSET),
-		    remote);
+		    remote, rt->in_use ? "yes" : "no");
 		free(remote);
 		free(dstnet);
 
