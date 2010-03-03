@@ -429,13 +429,13 @@ show_lfib_msg(struct imsg *imsg)
 		else if (k->flags & F_CONNECTED)
 			printf("link#%-13u", k->ifindex);
 
-		if (k->local_label) {
+		if (k->local_label != NO_LABEL) {
 			printf("%-18u", (ntohl(k->local_label) >>
 			    MPLS_LABEL_OFFSET));
 		} else
 			printf("-                 ");
 
-		if (k->remote_label) {
+		if (k->remote_label != NO_LABEL) {
 			printf("%u", (ntohl(k->remote_label) >>
 			    MPLS_LABEL_OFFSET));
 		} else
