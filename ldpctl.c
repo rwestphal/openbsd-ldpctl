@@ -390,9 +390,9 @@ show_nbr_msg(struct imsg *imsg)
 void
 show_lfib_head(void)
 {
-	printf("flags: * = valid, C = Connected, S = Static\n");
-	printf("%-6s %-20s %-17s %-17s %s\n", "Flags", "Destination", "Nexthop",
-	    "Local Label", "Remote Label");
+	printf("Flags: C = Connected, S = Static\n");
+	printf(" %-4s %-20s %-17s %-17s %s\n", "Prio", "Destination",
+	    "Nexthop", "Local Label", "Remote Label");
 }
 
 int
@@ -407,21 +407,14 @@ show_lfib_msg(struct imsg *imsg)
 			errx(1, "wrong imsg len");
 		k = imsg->data;
 
-		if (k->flags & F_DOWN)
-			printf(" ");
-		else
-			printf("*");
-
-		if (!(k->flags & F_KERNEL))
-			printf("R");
-		else if (k->flags & F_CONNECTED)
+		if (k->flags & F_CONNECTED)
 			printf("C");
 		else if (k->flags & F_STATIC)
 			printf("S");
 		else
 			printf(" ");
 
-		printf("     ");
+		printf(" %3d ", k->priority);
 		if (asprintf(&p, "%s/%u", inet_ntoa(k->prefix),
 		    k->prefixlen) == -1)
 			err(1, NULL);
