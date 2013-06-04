@@ -33,6 +33,7 @@ enum actions {
 	LOG_VERBOSE,
 	LOG_BRIEF,
 	SHOW,
+	SHOW_DISC,
 	SHOW_IFACE,
 	SHOW_NBR,
 	SHOW_LIB,
