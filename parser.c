@@ -63,7 +63,7 @@ static const struct token t_show_fib[];
 static const struct token t_log[];
 
 static const struct token t_main[] = {
-/*	{KEYWORD,	"reload",	RELOAD,		NULL}, */
+	{KEYWORD,	"reload",	RELOAD,		NULL},
 	{KEYWORD,	"fib",		FIB,		t_fib},
 	{KEYWORD,	"show",		SHOW,		t_show},
 	{KEYWORD,	"log",		NONE,		t_log},
