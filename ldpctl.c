@@ -393,7 +393,7 @@ show_lib_msg(struct imsg *imsg)
 		if (!rt->in_use) {
 			if (asprintf(&remote, "-") == -1)
 				err(1, NULL);
-		} else if (rt->connected || rt->remote_label == NO_LABEL) {
+		} else if (rt->remote_label == NO_LABEL) {
 			if (asprintf(&remote, "Untagged") == -1)
 				err(1, NULL);
 		} else if (rt->remote_label == MPLS_LABEL_IMPLNULL) {
