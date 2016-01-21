@@ -49,12 +49,12 @@ struct parse_result {
 	char		ifname[IF_NAMESIZE];
 	int		flags;
 	enum actions	action;
-	u_int8_t	prefixlen;
+	uint8_t		prefixlen;
 };
 
 struct parse_result	*parse(int, char *[]);
 int			 parse_addr(const char *, struct in_addr *);
 int			 parse_prefix(const char *, struct in_addr *,
-			     u_int8_t *);
+			    uint8_t *);
 
 #endif	/* _PARSER_H_ */
