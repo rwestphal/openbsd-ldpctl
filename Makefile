@@ -3,7 +3,7 @@
 .PATH:		${.CURDIR}/../ldpd
 
 PROG=	ldpctl
-SRCS=	log.c ldpctl.c parser.c
+SRCS=	util.c log.c ldpctl.c parser.c
 CFLAGS+= -Wall
 CFLAGS+= -Wstrict-prototypes -Wmissing-prototypes
 CFLAGS+= -Wmissing-declarations
