@@ -587,7 +587,7 @@ show_l2vpn_pw_msg(struct imsg *imsg)
 		pw = imsg->data;
 
 		printf("%-11s %-15s %-14u %-10s\n", pw->ifname,
-		    inet_ntoa(pw->nexthop), pw->pwid,
+		    inet_ntoa(pw->lsrid), pw->pwid,
 		    (pw->status ? "UP" : "DOWN"));
 		break;
 	case IMSG_CTL_END:
@@ -610,7 +610,7 @@ show_l2vpn_binding_msg(struct imsg *imsg)
 		pw = imsg->data;
 
 		printf("Neighbor: %s - PWID: %u (%s)\n",
-		    inet_ntoa(pw->nexthop), pw->pwid,
+		    inet_ntoa(pw->lsrid), pw->pwid,
 		    print_pw_type(pw->type));
 		printf("%-12s%-15s%-15s%-10s\n", "", "Label", "Group-ID",
 		    "MTU");
