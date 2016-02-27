@@ -39,17 +39,25 @@ for
 The following commands are available:
 .Bl -tag -width Ds
 .It Cm fib couple
-Insert the learned routes into the Label Forwarding Information Base a.k.a.
+Insert the learned labels into the Label Forwarding Information Base a.k.a.
 the kernel routing table.
 .It Cm fib decouple
-Remove the learned routes from the Label Forwarding Information Base a.k.a.
+Remove the learned labels from the Label Forwarding Information Base a.k.a.
 the kernel routing table.
 .It Cm log brief
 Disable verbose debug logging.
 .It Cm log verbose
 Enable verbose debug logging.
-.It Cm show fib Op Ar destination | filter
+.It Cm reload
+Reload the configuration file.
+.It Xo
+.Cm show fib
+.Op Cm family Ar family
+.Op Ar destination | filter
+.Xc
 Show the Label Forwarding Information Base.
+.Ar family ,
+if given, limit the output to the given address family.
 .Ar destination
 can be specified to show the route matching a destination IP address.
 .Ar filter
@@ -68,16 +76,42 @@ Show only static routes.
 and
 .Cm static
 may be specified together.
-.It Cm show interfaces
+.It Xo
+.Cm show interfaces
+.Op Cm family Ar family
+.Xc
 Show details for all interfaces.
-.It Cm show neighbor
+.Ar family ,
+if given, limit the output to the given address family.
+.It Xo
+.Cm show discovery
+.Op Cm family Ar family
+.Xc
+Show adjacencies.
+.Ar family ,
+if given, limit the output to the given address family.
+.It Xo
+.Cm show neighbor
+.Op Cm family Ar family
+.Xc
 Show neighbors.
-.It Cm show lib
-Show the Label Information Base.
+.Ar family ,
+if given, limit the output to the given address family.
+.It Xo
+.Cm show lib
+.Op Cm family Ar family
+.Xc
+Show the IPv4 Label Information Base.
+.Ar family ,
+if given, limit the output to the given address family.
+.It Cm show l2vpn bindings
+Show the PWID Label Information Base.
+.It Cm show l2vpn pseudowires
+Show the status of the configured pseudowires.
 .El
 .Sh FILES
 .Bl -tag -width "/var/run/ldpd.sockXX" -compact
-.It /var/run/ldpd.sock
+.It Pa /var/run/ldpd.sock
 .Ux Ns -domain
 socket used for communication with
 .Xr ldpd 8 .

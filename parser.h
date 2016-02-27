@@ -39,20 +39,21 @@ enum actions {
 	SHOW_LIB,
 	SHOW_FIB,
 	SHOW_FIB_IFACE,
+	SHOW_L2VPN_PW,
+	SHOW_L2VPN_BINDING,
 	RELOAD
 };
 
 struct parse_result {
-	struct in_addr	addr;
+	int		family;
+	union ldpd_addr	addr;
 	char		ifname[IF_NAMESIZE];
 	int		flags;
 	enum actions	action;
-	u_int8_t	prefixlen;
+	uint8_t		prefixlen;
 };
 
 struct parse_result	*parse(int, char *[]);
-int			 parse_addr(const char *, struct in_addr *);
-int			 parse_prefix(const char *, struct in_addr *,
-			     u_int8_t *);
+int			 parse_addr(const char *, int *, union ldpd_addr *);
 
 #endif	/* _PARSER_H_ */
