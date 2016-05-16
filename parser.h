@@ -41,6 +41,7 @@ enum actions {
 	SHOW_FIB_IFACE,
 	SHOW_L2VPN_PW,
 	SHOW_L2VPN_BINDING,
+	CLEAR_NBR,
 	RELOAD
 };
 
